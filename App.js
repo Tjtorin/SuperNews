@@ -1,13 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Title from './components/Title';
+import SearchInput from './components/SearchInput';
+import SearchButton from './components/SearchButton';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Title title='Super News'/>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={SearchButton}
+        />
+        <Stack.Screen
+          name="Test"
+          component={SearchInput}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -16,6 +31,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 25
   },
 });
