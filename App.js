@@ -3,9 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Title from './components/Title';
-import SearchInput from './components/SearchInput';
-import SearchButton from './components/SearchButton';
+import HomePage from './components/HomePage';
+import ResultsPage from './components/ResultsPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,11 +14,11 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen
           name="Home"
-          component={SearchButton}
+          component={HomePage}
         />
         <Stack.Screen
-          name="Test"
-          component={SearchInput}
+          name="Results"
+          component={ResultsPage}
         />
       </Stack.Navigator>
     </NavigationContainer>
