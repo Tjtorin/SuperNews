@@ -5,30 +5,32 @@ import SearchButton from './SearchButton';
 import SearchInput from './SearchInput';
 import Title from './Title';
 
-const getArticles = (searchTerm) => {
-    console.log(searchTerm);
+const getArticles = async(searchTerm) => {
+    let url = `https://newsapi.org/v2/everything/?q=${searchTerm}`;
 
-    fetch("https://newsapi.org/v2/everything/?q=", {
-        headers: {
-            "X-Api-Key": "4e90b3063a404d37ba3813afcc50fc7a"
-        },
-    })
-    .then(response => response.json)
-    .then(json => {
-        console.log(json.articles);
-    })
-    .catch(error => {
-      console.error(error);
-    });
+    try {
+      let response = await fetch(
+        url,
+        {
+            headers: {
+                "X-Api-Key": "4e90b3063a404d37ba3813afcc50fc7a"
+            },
+        }
+      );
 
-    //return searchTerm;
-}
+      let json = await response.json();
+      
+      console.log(json.articles);
+      return searchTerm;
+    } catch (error) {
+       console.error(error);
+    }
+  };
 
 export default function ResultsPage({route, navigation}) {
     return (
         <View style={styles.container}>
         <Title title="Super News" />
-        <Text>{getArticles(route.params.searchTerm)}</Text>
         </View>
     );
 }
