@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import HomePage from './components/HomePage';
 import ResultsPage from './components/ResultsPage';
+import ResultItem from './components/ResultItem';
 
 const Stack = createNativeStackNavigator();
 
