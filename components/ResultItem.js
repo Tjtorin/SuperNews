@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { TextInput, View, StyleSheet, Text, Dimensions, Image } from 'react-native';
+import { TextInput, View, StyleSheet, Text, Dimensions, Image, useWindowDimensions } from 'react-native';
 import RenderHtml from 'react-native-render-html';
 
 let deviceHeight = Dimensions.get('window').height;
 let deviceWidth = Dimensions.get('window').width;
 
 export default function ResultItem({title, description, image}) {
-  const source = {
-    html: "Test",
-  };
+  const html = description;
+  const {width} = useWindowDimensions();
 
-  console.log(description);
+  const source = {
+    html: html,
+  };
 
   return (
     <View style={styles.container}>
@@ -18,7 +19,7 @@ export default function ResultItem({title, description, image}) {
         <Image source={{uri: image}}/>
         <RenderHtml
           source={source}
-          contentWidth={deviceWidth}
+          contentWidth={width}
         />
     </View>
   );
@@ -29,7 +30,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5,
     borderWidth: 2,
-    margin: 2
+    margin: 5,
+    padding: 5,
+    width: deviceWidth / 1.1
   },
 
   articleTitle: {
