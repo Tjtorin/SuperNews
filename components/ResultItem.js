@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { TextInput, View, StyleSheet, Text, Dimensions, Image, useWindowDimensions } from 'react-native';
+import { View, StyleSheet, Text, Dimensions, Image, useWindowDimensions, TouchableHighlight } from 'react-native';
+import * as Linking from 'expo-linking';
 import RenderHtml from 'react-native-render-html';
 
 let deviceHeight = Dimensions.get('window').height;
 let deviceWidth = Dimensions.get('window').width;
 
-export default function ResultItem({title, description, image}) {
+export default function ResultItem({title, description, image, url}) {
   const html = description;
   const {width} = useWindowDimensions();
 
@@ -18,15 +19,33 @@ export default function ResultItem({title, description, image}) {
 
   return (
     <View style={styles.container}>
+      <TouchableHighlight
+        onPress={() => {
+          Linking.openURL(url);
+        }}
+      >
         <Text style={styles.articleTitle}>{title}</Text>
+      </TouchableHighlight>
+      <TouchableHighlight
+        onPress={() => {
+          Linking.openURL(url);
+        }}
+      >
         <Image
           source={{ uri: image }}
           style={imageStyle}
         />
+      </TouchableHighlight>
+      <TouchableHighlight
+        onPress={() => {
+          Linking.openURL(url);
+        }}
+      >
         <RenderHtml
           source={source}
           contentWidth={width}
         />
+      </TouchableHighlight>
     </View>
   );
 }

@@ -1,8 +1,5 @@
 import * as React from 'react';
-import { TextInput, View, StyleSheet, Text, Dimensions, FlatList } from 'react-native';
-
-import SearchButton from './SearchButton';
-import SearchInput from './SearchInput';
+import { View, StyleSheet, FlatList } from 'react-native';
 import Title from './Title';
 import ResultItem from './ResultItem';
 
@@ -11,7 +8,6 @@ const maxArticles = 100;
 // once they are loaded and then re-render the flat list using this data
 let globalArticles; 
 
-// TODO: This may possibly be getting called multiple times when it should not.
 const getArticlesObject = async(searchTerm) => {
     let url = new URL("https://newsapi.org/v2/everything");
     url.searchParams.append("q", searchTerm);
@@ -53,7 +49,7 @@ const processArticleData = (articlesObj, setSelectedId) => {
 }
 
 const renderItem = ({ item }) => (
-    <ResultItem title={item.title} description={item.description} image={item.urlToImage} />
+    <ResultItem title={item.title} description={item.description} image={item.urlToImage} url={item.url} />
 );
 
 export default function ResultsPage({route, navigation}) {

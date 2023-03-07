@@ -1,12 +1,8 @@
 import * as React from 'react';
-import { TextInput, View, StyleSheet, Text, Dimensions, Image } from 'react-native';
+import {View, StyleSheet, Image } from 'react-native';
 
-import SearchButton from './SearchButton';
 import SearchInput from './SearchInput';
 import Title from './Title';
-
-let deviceHeight = Dimensions.get('window').height;
-let deviceWidth = Dimensions.get('window').width;
 
 export default function HomePage() {
   return (
