@@ -13,10 +13,16 @@ export default function ResultItem({title, description, image}) {
     html: html,
   };
 
+  // If image can't load or doesn't exist then remove it's styling to remove blank space
+  const imageStyle = image ? styles.articleImage : {};
+
   return (
     <View style={styles.container}>
         <Text style={styles.articleTitle}>{title}</Text>
-        <Image source={{uri: image}}/>
+        <Image
+          source={{ uri: image }}
+          style={imageStyle}
+        />
         <RenderHtml
           source={source}
           contentWidth={width}
@@ -44,8 +50,9 @@ const styles = StyleSheet.create({
     margin: 5
   },
 
-  image: {
-    width: deviceWidth / 2,
-    height: deviceWidth / 2
-  }
+  articleImage: {
+    height: deviceHeight / 5,
+    width: deviceWidth / 1.2,
+    margin: deviceHeight / 60
+},
 });

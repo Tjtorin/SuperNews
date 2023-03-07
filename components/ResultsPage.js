@@ -11,8 +11,11 @@ const maxArticles = 100;
 // once they are loaded and then re-render the flat list using this data
 let globalArticles; 
 
+// TODO: This may possibly be getting called multiple times when it should not.
 const getArticlesObject = async(searchTerm) => {
-    let url = `https://newsapi.org/v2/everything/?q=${searchTerm}`;
+    let url = new URL("https://newsapi.org/v2/everything");
+    url.searchParams.append("q", searchTerm);
+    url.searchParams.append("language", "en");
 
     try {
       let response = await fetch(
@@ -35,9 +38,10 @@ const getArticlesObject = async(searchTerm) => {
 const processArticleData = (articlesObj, setSelectedId) => {
     articlesObj.then((data) => {
         const articles = data["articles"];
+        let max = Math.min(maxArticles, articles.length); // Limit articles to 100
 
         // Give each article an id (for flatlist)
-        for (let i = 0; i < maxArticles; i++) {
+        for (let i = 0; i < max; i++) {
             articles[i]["id"] = i;
         }
 
