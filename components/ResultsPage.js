@@ -2,6 +2,7 @@ import * as React from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import Title from './Title';
 import ResultItem from './ResultItem';
+import { API_KEY } from '../ApiKey';
 
 const maxArticles = 100;
 // I need to use a global variable for the articles because I need to update this variable with the articles
@@ -18,7 +19,7 @@ const getArticlesObject = async(searchTerm) => {
         url,
         {
             headers: {
-                "X-Api-Key": "4e90b3063a404d37ba3813afcc50fc7a"
+                "X-Api-Key": API_KEY
             },
         }
       );
